@@ -1,7 +1,3 @@
-# ─────────────────────────────────────────────────────
-# 🟨 Base Go
-# ─────────────────────────────────────────────────────
-
 FROM golang:1.24-bullseye AS base-go
 RUN apt-get update && apt-get install -y git curl
 RUN go install github.com/air-verse/air@latest
@@ -16,4 +12,4 @@ RUN go mod tidy
 
 FROM base-go AS dev-go
 WORKDIR /app
-CMD ["air", "-c", ".air.toml"]
+CMD ["sh", "-c", "tailwindcss -i ./input.css -o ./static/css/main.css --watch & air -c .air.toml"]
