@@ -1,0 +1,11 @@
+services:
+  todof-front:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-nseven"
+      - "traefik.http.routers.todof-front.rule=${HOST_TRAEFIK}"
+      - "traefik.http.routers.todof-front.entrypoints=websecure"
+      - "traefik.http.routers.todof-front.tls=true"
+      - "traefik.http.routers.todof-front.tls.certresolver=default"
+      - "traefik.http.services.todof-front.loadbalancer.server.port=${PORT}"
+      - "traefik.http.services.todof-front.loadbalancer.server.scheme=http"

@@ -1,0 +1,22 @@
+name: todof-front
+services:
+  todof-front:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      target: dev-go
+    container_name: todof-front
+    image: todof-front:dev
+    volumes:
+      - ../:/app
+    env_file:
+      - ../.env
+    networks:
+      - traefik-nseven
+      - todof-front
+
+networks:
+  traefik-nseven:
+    external: true
+  todof-front:
+    driver: bridge
